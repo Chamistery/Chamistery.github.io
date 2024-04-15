@@ -33,12 +33,12 @@ body {
     border-radius: 8px;
     text-align: center;
 }
-.header {
+.section_left__header {
     text-align: center
     position: relative;
 }
 
-.profile-image {
+.section_left__header__image {
     border: 3px solid black;
     float: right;
     width: 400px;
@@ -76,7 +76,7 @@ h1, h2 {
     text-align: left;
 }
 
-.section_added {
+.section_left__section_added {
     margin-bottom: 20px;
     background: #fafafa;
     padding: 15px;
@@ -110,15 +110,15 @@ ul li {
     color: white;
 }
 
-.social-links a.telegram {
+.social-links a.social-links__telegram {
     background-color: #29abe2;
 }
 
-.social-links a.vk {
+.social-links a.social-links__vk {
     background-color: #4c75a3;
 }
 
-.social-links a.github {
+.social-links a.social-links__github {
     background-color: #333;
 }
 
@@ -127,20 +127,20 @@ ul li {
     animation: pop 0.5s ease;
 }
 
-.hobbies {
+.section_left__hobbies {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.hobbie-images {
+.section_left__hobbies__hobbie-images {
     display: flex;
     justify-content: space-between;
     align-items: center;
     justify-content: center;
 }
 
-.hobbie-image {
+.section_left__hobbies__hobbie-images__hobbie-image {
     flex-direction: column;
     max-width: 73px;
     max-height: 73px;
@@ -154,19 +154,19 @@ ul li {
     border-radius: 100%;
 }
 
-.text-and-links {
+.section_left__text-and-links {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.work-links {
+.section_left__text-and-links__work-links {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.work-link {
+.section_left__text-and-links__work-links__work-link {
     max-width: 80px;
     max-height: 80px;
     border: 3px solid black;
@@ -176,7 +176,7 @@ ul li {
     padding: 1px;
 }
 
-.work-links a:hover {
+.section_left__text-and-links__work-links a:hover {
     opacity: 0.8;
     animation: pop 0.5s ease;
 }
