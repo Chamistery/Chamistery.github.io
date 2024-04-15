@@ -59,11 +59,6 @@ h1, h2 {
     color: #555;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-}
-
 .section {
     margin-bottom: 20px;
     background: #fafafa;
