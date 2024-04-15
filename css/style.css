@@ -17,10 +17,14 @@ body {
 @media (max-width: 768px) {
     body, p {
         line-height: 1.32;
+        font-size: 1rem;
     }
     .social-links a {
         font-size: 1rem;
         padding: 0.4em 0.8em;
+    }
+    .section_left__header__image {
+        max-width: 220px;
     }
 }
 
@@ -44,7 +48,7 @@ body {
     width: 400px;
     border-radius: 50%;
     height: auto;
-    display: inline-block;
+    display: flex;
     margin-left: 1px;
 }
 
