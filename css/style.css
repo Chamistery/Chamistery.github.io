@@ -392,6 +392,11 @@ h2 {
     width: 300px;
 }
 
+.dark-theme .popup-content {
+    background: #333333;
+    color: white;
+}
+
 .close {
     cursor: pointer;
     position: absolute;
@@ -400,6 +405,10 @@ h2 {
     font-size: 30px;
     color: black;
     padding: 20px;
+}
+
+.dark-theme .close {
+    color: red;
 }
 
 .gallery-img {
