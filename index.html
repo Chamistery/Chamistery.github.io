@@ -21,10 +21,21 @@
     
     <title>Резюме</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="Конь.jpeg" />
 </head>
 <body>
+    <div id="popup" class="popup" style="display: none;">
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <p>Взяли бы меня на работу? :)</p>
+        </div>
+    </div>
     <div class="container">
-        <h1>Резюме</h1>
+        <div class="header">
+            <h1>Резюме</h1>
+            <button id="theme-toggle"></button>
+        </div>
+        <hr class="divider"></hr>
         <div class="section_left">
             <div class="section_left__header">
                 <img src="Конь.jpeg" alt="Профиль" class="section_left__header__image">
@@ -105,7 +116,47 @@
                 </div>
             </div>
         </div>
-
+        <div class="gallery">
+            <img class="gallery-img" src="Avatar.jpeg" alt="Image 1">
+            <img class="gallery-img" src="Конь.jpeg" alt="Image 2">
+            <img class="gallery-img" src="Я.jpeg" alt="Image 3">
+        </div>
+        <div id="countdown">
+            <p>Время до счастья:</p>
+            <div id="timer">
+                <span id="days"></span> дней,
+                <span id="hours"></span> часов,
+                <span id="minutes"></span> минут,
+                <span id="seconds"></span> секунд.
+            </div>
+        </div>
+        <div class="mouse-parallax">
+            <div class="mouse-parallax-bg"></div>
+        </div>
+        <div id="popup_gallery" class="popup_gallery" style="display: none;">
+            <span class="close_gallery">&times;</span>
+            <img class="popup-img" src="" alt="Увеличенное изображение">
+            <a class="prev">&#10094;</a>
+            <a class="next">&#10095;</a>
+        </div>
+    </div>  
+    <script src="javascript/script.js"></script>
+    <div id="feedback-popup" class="feedback-popup">
+        <div class="feedback-content">
+            <span class="close-feedback">&times;</span>
+            <form id="feedback-form">
+                <label for="phone">Телефон:</label>
+                <input type="text" id="phone" name="phone" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Сообщение:</label>
+                <textarea id="message" name="message" required></textarea>
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
+    </div>
+    <div id="navbar">
+        <button id="open-feedback-popup">Contact</button>
         <div class="social-links">
             <a href="https://t.me/chamistery" class="social-links__telegram" target="_blank">Telegram</a>
             <a href="https://vk.com/mr_rip" class="social-links__vk" target="_blank">VK</a>
