@@ -537,6 +537,16 @@ h2 {
     cursor: wait;
 }
 
+.dark-theme .button-loading {
+    background-color: #FFA500;
+    cursor: wait;
+}
+
+.dark-theme .button-success {
+    background-color: #4CAF50;
+    cursor: default;
+}
+
 .button-success {
     background-color: #4CAF50;
     cursor: default;
@@ -587,11 +597,11 @@ h2 {
     
     .dark-theme #open-feedback-popup {
         font-size: 1rem;
-        padding: 0.25em 0.6em;
+        padding: 0.22em 0.6em;
     }
     
     #open-feedback-popup {
         font-size: 1rem;
-        padding: 0.25em 0.6em;
+        padding: 0.22em 0.6em;
     }
 }
