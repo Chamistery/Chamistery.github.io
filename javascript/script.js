@@ -1,7 +1,26 @@
 const btn = document.getElementById('theme-toggle');
+const body = document.body;
+const themeKey = 'theme';
+
+const savedTheme = localStorage.getItem(themeKey);
+
+if (savedTheme) {
+    body.classList.add(savedTheme);
+}
+
 btn.addEventListener('click', function() {
-    document.body.classList.toggle('dark-theme');
+    // Если текущая тема - светлая, то переключаем на темную и сохраняем в Local Storage
+    if (!body.classList.contains('dark-theme')) {
+        body.classList.add('dark-theme');
+        localStorage.setItem(themeKey, 'dark-theme');
+    }
+    // Если текущая тема - темная, то переключаем на светлую и удаляем из Local Storage
+    else {
+        body.classList.remove('dark-theme');
+        localStorage.removeItem(themeKey);
+    }
 });
+
 document.addEventListener('DOMContentLoaded', function() {
     const popup = document.getElementById('popup');
     const close = document.querySelector('.close');
