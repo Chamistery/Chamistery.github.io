@@ -86,14 +86,12 @@ window.addEventListener('mousemove', function(e) {
 document.addEventListener('DOMContentLoaded', function() {
     let images = document.querySelectorAll('.gallery-img');
     let popup = document.getElementById('popup_gallery');
-    const navbar = document.querySelector('.navbar');
     let popupImg = document.querySelector('.popup-img');
     let currentIndex = 0;
 
     images.forEach((img, index) => {
         img.addEventListener('click', () => {
             popup.style.display = 'flex';
-            navbar.classList.remove('fixed');
             popupImg.src = img.src;
             currentIndex = index;
             updateButtons();
@@ -103,7 +101,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('click', function(event) {
         if (!event.target.closest('.popup-content') && !event.target.closest('.next') && !event.target.closest('.prev') && !event.target.closest('.gallery-img')) {
             popup.style.display = 'none';
-            navbar.classList.add('fixed');
         }
     });
 
@@ -140,12 +137,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     openFeedbackPopupButton.addEventListener('click', function() {
         feedbackPopup.classList.add('show');
-        navbar.classList.remove('fixed');
     });
 
     closeFeedback.addEventListener('click', function() {
         feedbackPopup.classList.remove('show');
-        navbar.classList.add('fixed');
     });
     
     feedbackForm.addEventListener('submit', function(event) {
@@ -159,7 +154,6 @@ document.addEventListener('DOMContentLoaded', function() {
             submitButton.textContent = "Отправляем...";
             submitButton.classList.add('button-loading');
             submitButton.disabled = true;
-            navbar.classList.add('fixed');
 
             sendData({ phone, email, message });
         } else {
