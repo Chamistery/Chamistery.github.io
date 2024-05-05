@@ -59,10 +59,11 @@ function countdown(targetDate) {
     }, 1000);
 }
 
+// Задайте целевая дата
 countdown('2024-06-21');
 
 document.addEventListener('DOMContentLoaded', function() {
-    const navbar = document.getElementById('navbar');
+    const navbar = document.querySelector('.navbar');
     const feedbackPopup = document.getElementById('feedback-popup');
     const stickyStart = window.innerHeight; // Высота одного экрана
     let popup = document.getElementById('popup_gallery');
@@ -85,7 +86,7 @@ window.addEventListener('mousemove', function(e) {
 document.addEventListener('DOMContentLoaded', function() {
     let images = document.querySelectorAll('.gallery-img');
     let popup = document.getElementById('popup_gallery');
-    const navbar = document.getElementById('navbar');
+    const navbar = document.querySelector('.navbar');
     let popupImg = document.querySelector('.popup-img');
     let currentIndex = 0;
 
@@ -99,9 +100,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    document.querySelector('.close_gallery').addEventListener('click', () => {
-        popup.style.display = 'none';
-        navbar.classList.add('fixed');
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.popup-content') && !event.target.closest('.next') && !event.target.closest('.prev') && !event.target.closest('.gallery-img')) {
+            popup.style.display = 'none';
+            navbar.classList.add('fixed');
+        }
     });
 
     document.querySelector('.prev').addEventListener('click', () => {
@@ -126,13 +129,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+
 document.addEventListener('DOMContentLoaded', function() {
     const feedbackPopup = document.getElementById('feedback-popup');
     const openFeedbackPopupButton = document.getElementById('open-feedback-popup');
     const closeFeedback = document.querySelector('.close-feedback');
     const feedbackForm = document.getElementById('feedback-form');
     const submitButton = feedbackForm.querySelector('button[type="submit"]');
-    const navbar = document.getElementById('navbar');
+    const navbar = document.querySelector('.navbar');
 
     openFeedbackPopupButton.addEventListener('click', function() {
         feedbackPopup.classList.add('show');
@@ -143,12 +147,13 @@ document.addEventListener('DOMContentLoaded', function() {
         feedbackPopup.classList.remove('show');
         navbar.classList.add('fixed');
     });
-
+    
     feedbackForm.addEventListener('submit', function(event) {
         event.preventDefault();
         let phone = document.getElementById('phone').value;
         let email = document.getElementById('email').value;
         let message = document.getElementById('message').value;
+        console.log(message);
 
         if (validatePhone(phone) && validateEmail(email) && validateMessage(message)) {
             submitButton.textContent = "Отправляем...";
@@ -163,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     function sendData(data) {
-        fetch('your_post_url_here', {
+        fetch('http://test.test', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -176,9 +181,10 @@ document.addEventListener('DOMContentLoaded', function() {
             submitButton.classList.replace('button-loading', 'button-success');
         })
         .catch(error => {
-            submitButton.textContent = "Ошибка отправки";
+            submitButton.textContent = "Успешно отправлено";
             submitButton.disabled = false;
             alert("Ошибка при отправке: " + error.message);
+            submitButton.classList.replace('button-loading', 'button-success');
         });
     }
 });
