@@ -160,12 +160,13 @@ ul li {
 }
 
 .social-links {
-    position: static;
+    position: sticky;
     float: right;
     display: flex;
-    justify-content: start;
+    justify-content: space-between;
     padding: 10px;
     margin: 3px;
+    left: 83%;
 }
 
 .social-links a {
@@ -177,18 +178,18 @@ ul li {
 }
 
 #open-feedback-popup {
-    position: static;
+    position: absolute;
+    top: 25px;
+    left: 10px;
     float: left;
     display: flex;
     border: none;
-    justify-content: start;
+    justify-content: space-between;
     background-color: inherit;
-    padding: 10px;
-    top: 20px;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
     color: white;
-    margin: 24px;
+    padding: 10px;
 }
 
 #open-feedback-popup a {
@@ -197,6 +198,7 @@ ul li {
     border-radius: 4px;
     transition: background-color 0.3s, color 0.3s;
     color: white;
+    margin: 0 8px;
 }
 
 #open-feedback-popup:hover {
@@ -322,6 +324,7 @@ h2 {
     position: relative;
     overflow: hidden;
     margin-bottom: 50px;
+    display: flex;
 }
 .mouse-parallax-bg {
     position: absolute;
@@ -334,21 +337,23 @@ h2 {
     transition: all 0.1s ease;
 }
 
-#navbar {
-    display: block;
+.navbar {
+    display: flex;
     width: 100%;
     background-color: #333;
     color: white;
     padding: 2px 0;
+    position: relative;
     text-align: center;
+    justify-content: space-between;
 }
 
-.fixed {
+body .fixed {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 999;
 }
 
 #countdown {
@@ -440,16 +445,6 @@ h2 {
     max-height: 80%;
 }
 
-.close_gallery {
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 40px;
-    color: red;
-    padding: 20px;
-}
-
 .prev, .next {
     cursor: pointer;
     position: absolute;
@@ -478,29 +473,20 @@ h2 {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 0;
     background-color: rgba(0,0,0,0.7);
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
+    transition: opacity 0.3s, height 0.3s;
 }
 
 .feedback-popup.show {
-    display: flex;
+    height: 100%;
     opacity: 1;
-    visibility: visible;
-}
-
-.feedback-content {
-    position: relative;
-    background: white;
-    padding: 70px;
-    border-radius: 5px;
-    width: 400px;
-    color: black;
+    z-index: 1000;
 }
 
 .dark-theme .feedback-content {
@@ -516,6 +502,21 @@ h2 {
     font-size: 30px;
     color: black;
     padding: 20px;
+}
+
+.feedback-content {
+    position: relative;
+    background: white;
+    padding: 70px;
+    border-radius: 5px;
+    width: 400px;
+    color: black;
+    transition: transform 0.3s;
+    transform: scale(0.7);
+}
+
+.feedback-popup.show .feedback-content {
+    transform: scale(1);
 }
 
 #feedback-form label {
@@ -565,14 +566,6 @@ h2 {
     .dark-theme .social-links a {
         font-size: 1.2rem;
     }
-    
-    .dark-theme #open-feedback-popup {
-        font-size: 1.2rem;
-    }
-    
-    .dark-theme #open-feedback-popup {
-        font-size: 1.2rem;
-    }
 }
 
 @media (max-width: 768px) {
@@ -597,11 +590,11 @@ h2 {
     
     .dark-theme #open-feedback-popup {
         font-size: 1rem;
-        padding: 0.22em 0.6em;
+        top: 0.8em;
     }
     
     #open-feedback-popup {
         font-size: 1rem;
-        padding: 0.22em 0.6em;
+        top: 0.8em;
     }
 }
