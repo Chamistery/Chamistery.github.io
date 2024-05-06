@@ -24,7 +24,6 @@ btn.addEventListener('click', function() {
 document.addEventListener('DOMContentLoaded', function() {
     const popup = document.getElementById('popup');
     const close = document.querySelector('.close');
-
     function showPopup() {
         if (!localStorage.getItem('popupClosed')) {
             setTimeout(() => {
@@ -81,20 +80,6 @@ function countdown(targetDate) {
 // Задайте целевая дата
 countdown('2024-06-21');
 
-document.addEventListener('DOMContentLoaded', function() {
-    const navbar = document.querySelector('.navbar');
-    const feedbackPopup = document.getElementById('feedback-popup');
-    const stickyStart = window.innerHeight; // Высота одного экрана
-    let popup = document.getElementById('popup_gallery');
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset >= stickyStart && popup.style.display == 'none' && !feedbackPopup.classList.contains('show')) {
-            navbar.classList.add('fixed');
-        } else {
-            navbar.classList.remove('fixed');
-        }
-    });
-});
-
 let bg = document.querySelector('.mouse-parallax-bg');
 window.addEventListener('mousemove', function(e) {
     let x = e.clientX / window.innerWidth;
@@ -106,11 +91,13 @@ document.addEventListener('DOMContentLoaded', function() {
     let images = document.querySelectorAll('.gallery-img');
     let popup = document.getElementById('popup_gallery');
     let popupImg = document.querySelector('.popup-img');
+    const navbar = document.querySelector(".navbar");
     let currentIndex = 0;
 
     images.forEach((img, index) => {
         img.addEventListener('click', () => {
             popup.style.display = 'flex';
+            navbar.classList.remove('fixed');
             popupImg.src = img.src;
             currentIndex = index;
             updateButtons();
@@ -120,6 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('click', function(event) {
         if (!event.target.closest('.popup-content') && !event.target.closest('.next') && !event.target.closest('.prev') && !event.target.closest('.gallery-img')) {
             popup.style.display = 'none';
+            navbar.classList.add('fixed');
         }
     });
 
@@ -156,10 +144,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     openFeedbackPopupButton.addEventListener('click', function() {
         feedbackPopup.classList.add('show');
+        navbar.style.position = "relative";
     });
 
     closeFeedback.addEventListener('click', function() {
         feedbackPopup.classList.remove('show');
+        navbar.style.position = "fixed";
     });
     
     feedbackForm.addEventListener('submit', function(event) {
@@ -200,4 +190,18 @@ document.addEventListener('DOMContentLoaded', function() {
             submitButton.classList.replace('button-loading', 'button-success');
         });
     }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.querySelector('.navbar');
+    const feedbackPopup = document.getElementById('feedback-popup');
+    const stickyStart = window.innerHeight; // Высота одного экрана
+    let popup = document.getElementById('popup_gallery');
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset >= stickyStart && popup.style.display == 'none' && !feedbackPopup.classList.contains('show')) {
+            navbar.classList.add('fixed');
+        } else {
+            navbar.classList.remove('fixed');
+        }
+    });
 });
