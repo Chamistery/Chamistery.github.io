@@ -9,6 +9,7 @@ if (savedTheme) {
 }
 
 btn.addEventListener('click', function() {
+    const navbar = document.querySelector('.navbar');
     // Если текущая тема - светлая, то переключаем на темную и сохраняем в Local Storage
     if (!body.classList.contains('dark-theme')) {
         body.classList.add('dark-theme');
@@ -45,7 +46,7 @@ function validatePhone(phone) {
 }
 
 function validateEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    return /^[^\s@]+@[^\s@]{2,}(\.[^\s@]{2,})+(\.[^\s@]{2,})$/.test(email);
 }
 
 function validateMessage(message) {
@@ -105,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     document.addEventListener('click', function(event) {
-        if (!event.target.closest('.popup-content') && !event.target.closest('.next') && !event.target.closest('.prev') && !event.target.closest('.gallery-img')) {
+        if (!event.target.closest('.popup-content') && !event.target.closest('.next') && !event.target.closest('.prev') && !event.target.closest('.gallery-img') && popup.style.display == 'flex') {
             popup.style.display = 'none';
             navbar.classList.add('fixed');
         }
@@ -144,12 +145,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     openFeedbackPopupButton.addEventListener('click', function() {
         feedbackPopup.classList.add('show');
-        navbar.style.position = "relative";
+        navbar.classList.remove('fixed');
     });
 
     closeFeedback.addEventListener('click', function() {
         feedbackPopup.classList.remove('show');
-        navbar.style.position = "fixed";
+        navbar.classList.add('fixed');
     });
     
     feedbackForm.addEventListener('submit', function(event) {
@@ -165,8 +166,12 @@ document.addEventListener('DOMContentLoaded', function() {
             submitButton.disabled = true;
 
             sendData({ phone, email, message });
-        } else {
-            alert("Проверьте введенные данные.");
+        } else if (!validatePhone(phone)) {
+            alert("Проверьте номер телефона.");
+        } else if (!validateEmail(email)) {
+            alert("Проверьте почтовый адрес.");
+        } else if (!validateMessage(message)) {
+            alert("Проверьте текст сообщения.");
         }
     });
 
@@ -192,10 +197,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+let stickyStart = window.innerHeight;
+window.addEventListener('resize', function() {
+    stickyStart = window.innerHeight;
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     const navbar = document.querySelector('.navbar');
     const feedbackPopup = document.getElementById('feedback-popup');
-    const stickyStart = window.innerHeight; // Высота одного экрана
     let popup = document.getElementById('popup_gallery');
     window.addEventListener('scroll', function() {
         if (window.pageYOffset >= stickyStart && popup.style.display == 'none' && !feedbackPopup.classList.contains('show')) {
