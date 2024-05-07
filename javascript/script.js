@@ -46,7 +46,7 @@ function validatePhone(phone) {
 }
 
 function validateEmail(email) {
-    return /^[^\s@]+@[^\s@]{2,}(\.[^\s@]{2,})+(\.[^\s@]{2,})$/.test(email);
+    return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|((([a-z\-0-9]){2,}\.)+[a-z]{2,}))$/i.test(email);
 }
 
 function validateMessage(message) {
